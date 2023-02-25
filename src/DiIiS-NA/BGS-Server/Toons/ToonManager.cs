@@ -386,7 +386,7 @@ namespace DiIiS_NA.LoginServer.Toons
 			Logger.Debug("Deleting toon {0}", toon.PersistentID);
 		}
 
-		public static DBToon CreateFakeDBToon(string name, DBGameAccount gaccount)
+		public static DBToon CreateFakeDBToon(string name1111, DBGameAccount gaccount)
 		{
 			int class_seed = FastRandom.Instance.Next(100);
 			int gender_seed = FastRandom.Instance.Next(100);
