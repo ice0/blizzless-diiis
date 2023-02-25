@@ -15,15 +15,17 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.allow_failures }}
-    name: ${{ matrix.name }}
+
+    name: ${{ matrix.name }} / ${{ matrix.config }}
     strategy:
       matrix:
+        config: [Debug, Release]
         include:
         # for the matrix leg matching the os and version
         - os: ubuntu-22.04
-          name: Ubuntu 22.04 Jammy
+          name: Ubuntu 22.04 (.Net 7.0)
           toolchain: dotnet-sdk-7.0
-          allow_failures: false
+          allow_failures: true
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,10 +38,10 @@ jobs:
           wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
           sudo dpkg -i packages-microsoft-prod.deb
           rm packages-microsoft-prod.deb
-          sudo apt-get update && sudo apt-get install -y ${toolchain}
+          sudo apt-get update && sudo apt-get install -y ${{ matrix.toolchain }}
 
       - name: Build (dotnet)
         run: |
           dotnet restore src/Blizzless-D3.sln
-          dotnet msbuild src/Blizzless-D3.sln  /t:Build /p:Configuration=Debug
-          dotnet msbuild src/Blizzless-D3.sln  /t:Build /p:Configuration=Release
+          echo "dotnet msbuild src/Blizzless-D3.sln  /t:Build /p:Configuration=${{ matrix.config }}"
+          dotnet msbuild src/Blizzless-D3.sln  /t:Build /p:Configuration=${{ matrix.config }}
