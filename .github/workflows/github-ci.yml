@@ -3,9 +3,9 @@ name: Build CI
 on:
   # Triggers the workflow on push or pull request events but only for the selected branches
   push:
-    branches: [ test-stable, community ]
+    branches: [ test-stable, community, add-actions ]
   pull_request:
-    branches: [ test-stable, community ]
+    branches: [ test-stable, community, add-actions ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
