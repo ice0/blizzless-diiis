@@ -149,7 +149,7 @@ namespace DiIiS_NA.LoginServer.Toons
 		}
 
 		public StringPresenceField HeroNameField => new StringPresenceField(FieldKeyHelper.Program.D3,
-			FieldKeyHelper.OriginatingClass.Hero, 5, 0, _heroName);
+			FieldKeyHelper.OriginatingClass.Hero, 5, 0, heroName);
 
 		private D3.Hero.VisualEquipment _visualEquipment = null;
 		public bool _visualEquipmentChanged = true;
